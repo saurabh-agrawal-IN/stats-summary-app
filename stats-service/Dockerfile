@@ -2,7 +2,7 @@ FROM node
 WORKDIR /app/stats-service
 
 COPY package.json .
-RUN npm install
+RUN npm install 
 
 COPY . .
 EXPOSE 8002
