@@ -8,6 +8,7 @@ const { APP_SECRET } = require("../config");
   return await bcrypt.genSalt();
 }),
   (module.exports.generatePassword = async (password, salt) => {
+    console.log('Saurabh >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', password, salt);
     return await bcrypt.hash(password, salt);
   });
 
