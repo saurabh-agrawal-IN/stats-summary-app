@@ -23,3 +23,5 @@ class UserRepository {
         return existingUser;
     };  
 }
+
+module.exports = UserRepository;

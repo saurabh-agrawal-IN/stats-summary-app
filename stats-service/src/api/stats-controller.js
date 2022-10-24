@@ -1,11 +1,10 @@
-const { CUSTOMER_SERVICE, SHOPPING_SERVICE } = require("../config");
-const StatsService = require("../services/stats-service");
-const UserAuth = require("./middlewares/auth");
+const StatsService = require("../services/stats-services");
+const userAuth = require("./middlewares/auth");
 
-module.exports = (app, channel) => {
+module.exports = (app) => {
   const service = new StatsService();
 
-  app.post("/stats/new", async (req, res, next) => {
+  app.post("/stats/new", userAuth, async (req, res, next) => {
     const {
         name,
         salary,
@@ -24,6 +23,12 @@ module.exports = (app, channel) => {
         subDepartment
     });
     return res.json(data);
+  });
+
+  app.delete("/stats/:name", userAuth, async (req, res, next) => {
+    const name = req.params.name;
+    const { data } = await service.removeRecord(name);
+    res.status(200).json({status: 'OK'});
   });
 
   app.get("/category/:type", async (req, res, next) => {

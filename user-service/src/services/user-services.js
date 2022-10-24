@@ -1,4 +1,4 @@
-const { UserRepository } = require("../database");
+const { userRepository } = require("../database");
 const {
     formatData,
     generatePassword,
@@ -9,7 +9,7 @@ const {
 
 class UserService {
     constructor() {
-        this.repository = new UserRepository();
+        this.repository = new userRepository();
     }
 
     async signIn (userInputs) {
