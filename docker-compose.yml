@@ -1,10 +1,10 @@
 version: "3"
 services:
-  nosql-db:
+  stats-summary-db:
     image: mongo
     ports:
-      - "27018:27017"
-    container_name: stats-db
+      - "27017:27027"
+    container_name: stats-summary-db
     volumes:
       - ./db/:/data/db
   stats-service:
@@ -16,7 +16,7 @@ services:
       - "8002:8002"
     restart: always
     depends_on:
-      - "nosql-db"
+      - "stats-summary-db"
     volumes:
       - .:/app
       - /app/stats-service/node_modules
@@ -32,7 +32,7 @@ services:
       - "8001:8001"
     restart: always
     depends_on:
-      - "nosql-db"
+      - "stats-summary-db"
     volumes:
       - .:/app/
       - /app/user-service/node_modules
